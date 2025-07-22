@@ -1,13 +1,11 @@
 package com.ali.first_job_app.review;
 
-import com.ali.first_job_app.company.Company;
-
 import java.util.List;
 
 public interface ReviewService {
     List<Review> getAllReviews(Long companyId);
-    Review getReviewById(Long id);
+    Review getReviewById(Long companyId, Long reviewId);
     boolean createReview(Review review, Long companyId);
-    boolean updateReview(Long id, Review review);
-    boolean deleteReviewById(Long id);
+    boolean updateReview(Long reviewId, Long companyId,  Review review);
+    boolean deleteReviewById(Long reviewId, Long companyId);
 }

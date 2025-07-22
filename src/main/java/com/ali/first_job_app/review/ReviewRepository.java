@@ -1,6 +1,5 @@
 package com.ali.first_job_app.review;
 
-import com.ali.first_job_app.job.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
