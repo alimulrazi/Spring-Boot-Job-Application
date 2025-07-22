@@ -312,7 +312,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8085/companies/1/reviews/1",
+							"raw": "http://localhost:8085/companies/1/reviews/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -322,7 +322,7 @@
 								"companies",
 								"1",
 								"reviews",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -384,6 +384,31 @@
 								"1",
 								"reviews",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Actuator for Shutdown Application",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"actuator",
+								"shutdown"
 							]
 						}
 					},
