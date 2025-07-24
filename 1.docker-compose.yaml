@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: alimul_postgres_container
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - "./postgres/data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: alimul
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: jobapp
+    networks:
+      - product-net
+
+  pgadmin:
+    container_name: alimul_pgadmin_container
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - product-net
+
+networks:
+  product-net:
+    driver: bridge
+volumes:
+  db:
+    driver: local
