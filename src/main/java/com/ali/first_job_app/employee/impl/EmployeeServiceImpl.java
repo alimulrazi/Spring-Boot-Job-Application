@@ -26,8 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public void createEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 
     @Override
@@ -45,9 +45,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Integer id) {
-        employeeRepository.deleteById(id);
+    public boolean deleteEmployee(Integer id) {
+        try{
+            employeeRepository.deleteById(id);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
-
 }
 

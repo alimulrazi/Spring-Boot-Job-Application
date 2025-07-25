@@ -1,6 +1,7 @@
 package com.ali.first_job_app.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,10 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping
     public List<Employee> getAll() {
@@ -26,8 +31,9 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee create(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
+    public ResponseEntity<String> create(@RequestBody Employee employee) {
+        employeeService.createEmployee(employee);
+        return new ResponseEntity<>("Employee created successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -40,9 +46,13 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Integer id) {
+        boolean isEmployeeDeleted = employeeService.deleteEmployee(id);
+        if (isEmployeeDeleted) {
+            return new ResponseEntity<>("Employee deleted successfully!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        return new ResponseEntity.noContent().build();
     }
 }
 
